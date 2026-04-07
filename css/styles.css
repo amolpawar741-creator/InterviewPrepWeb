@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #1e293b;
+  color: white;
+  padding: 15px;
+}
+
+.menu-item {
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.menu-item:hover {
+  background: #334155;
+}
+
+.content {
+  background: #f1f5f9;
+  min-height: 100vh;
+  padding: 20px;
+}
+.submenu {
+  display: none;
+  padding-left: 10px;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+pre {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.menu-sub-item {
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #cbd5e1;
+}
+
+.menu-sub-item:hover {
+  background: #475569;
+}
