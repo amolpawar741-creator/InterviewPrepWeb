@@ -1,55 +1,108 @@
 body {
-  margin: 0;
-  font-family: Arial;
+  background: #f5f7fb;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* Sidebar */
 .sidebar {
-  width: 240px;
   height: 100vh;
-  background: #1e293b;
+  background: linear-gradient(180deg, #1e293b, #0f172a);
   color: white;
   padding: 15px;
 }
 
 .menu-item {
-  padding: 12px;
+  padding: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 6px;
+  transition: 0.3s;
 }
 
 .menu-item:hover {
-  background: #334155;
+  background: rgba(255,255,255,0.1);
 }
 
-.content {
-  background: #f1f5f9;
-  min-height: 100vh;
-  padding: 20px;
-}
+/* Child menu */
 .submenu {
+  margin-left: 10px;
   display: none;
-  padding-left: 10px;
 }
 
+.submenu .menu-item {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Cards */
 .card {
+  border: none;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Card header */
+.card-header {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Collapse animation */
+.card-body {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Pipeline UI */
+.pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  transition: 0.3s;
+}
+
+.step:hover {
+  background: #e2e8f0;
+}
+
+.badge {
+  min-width: 30px;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* Code block */
 pre {
   background: #0f172a;
-  color: #22c55e;
+  color: #38bdf8;
   padding: 10px;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 13px;
   overflow-x: auto;
 }
-.menu-sub-item {
-  padding: 8px 20px;
-  font-size: 14px;
-  cursor: pointer;
-  color: #cbd5e1;
-}
 
-.menu-sub-item:hover {
-  background: #475569;
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -8,53 +8,39 @@ renderSidebar() {
   const sidebar = document.getElementById("sidebar");
 
   sidebar.innerHTML = topics.map((t, i) => `
-    
-    <!-- Parent -->
-    <div class="menu-item d-flex justify-content-between align-items-center"
-         onclick="app.toggleMenu(${i})">
-      <span><i class="fa ${t.icon}"></i> ${t.name}</span>
-      <i class="fa fa-chevron-down" id="arrow-${i}"></i>
-    </div>
+    <div>
+      <div class="menu-item" onclick="app.toggleMenu(${i})">
+        <i class="fa ${t.icon}"></i> ${t.name}
+      </div>
 
-    <!-- Children -->
-    <div id="submenu-${i}" class="submenu">
-      ${t.children.map((c, j) => `
-        <div class="menu-sub-item" onclick="event.stopPropagation(); app.renderCards(${i}, ${j})">
-          ➤ ${c.name}
-        </div>
-      `).join("")}
+      <div class="submenu" id="submenu-${i}">
+        ${t.children.map((c, j) => `
+          <div class="menu-item" onclick="app.renderCards(${i}, ${j})">
+            ${c.name}
+          </div>
+        `).join("")}
+      </div>
     </div>
-
   `).join("");
 },
 
 renderCards(parentIndex, childIndex) {
   const content = document.getElementById("content");
-
-  const child = topics[parentIndex].children[childIndex];
+  const topic = topics[parentIndex].children[childIndex];
 
   content.innerHTML = `
-    <h3 class="mb-4">${child.name}</h3>
-
+    <h3 class="mb-4">${topic.name}</h3>
     <div class="row">
-      ${child.questions.map((q, i) => `
+      ${topic.questions.map((q, i) => `
         <div class="col-md-6">
           <div class="card mb-3">
-
-            <div class="card-header bg-dark text-white"
-                 data-bs-toggle="collapse"
-                 data-bs-target="#q-${parentIndex}-${childIndex}-${i}"
-                 style="cursor:pointer">
-
+            <div class="card-header bg-dark text-white" onclick="app.toggleCard(${i})">
               ${q.title}
+              <i class="fa fa-chevron-down"></i>
             </div>
-
-            <div id="q-${parentIndex}-${childIndex}-${i}" class="collapse">
-              <div class="card-body">
-                <pre>${q.content}</pre>
-              </div>
+            <div class="card-body" id="card-${i}">
+              ${q.content}
             </div>
-
           </div>
         </div>
       `).join("")}
@@ -62,15 +48,12 @@ renderCards(parentIndex, childIndex) {
   `;
 },
 toggleMenu(index) {
-  const submenu = document.getElementById(`submenu-${index}`);
-  const arrow = document.getElementById(`arrow-${index}`);
-
-  const isOpen = submenu.style.display === "block";
-
-  submenu.style.display = isOpen ? "none" : "block";
-
-  // rotate arrow
-  arrow.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+  const el = document.getElementById(`submenu-${index}`);
+  el.style.display = el.style.display === "block" ? "none" : "block";
+},
+toggleCard(index) {
+  const el = document.getElementById(`card-${index}`);
+  el.style.display = el.style.display === "block" ? "none" : "block";
 }
 };
 
